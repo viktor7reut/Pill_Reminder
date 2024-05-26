@@ -21,6 +21,7 @@
 		654782FC2BFF21AD00018A55 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654782FB2BFF21AD00018A55 /* TableViewDelegate.swift */; };
 		654782FF2BFF21E800018A55 /* PillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654782FE2BFF21E800018A55 /* PillModel.swift */; };
 		654783012BFF220500018A55 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654783002BFF220500018A55 /* ProfileModel.swift */; };
+		654783042C03D52000018A55 /* UIButton+style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654783032C03D52000018A55 /* UIButton+style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		654782FB2BFF21AD00018A55 /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		654782FE2BFF21E800018A55 /* PillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillModel.swift; sourceTree = "<group>"; };
 		654783002BFF220500018A55 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		654783032C03D52000018A55 /* UIButton+style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+style.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +100,8 @@
 		654782EF2BFF1C7F00018A55 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				654782F02BFF1C9600018A55 /* DateFormatter.swift */,
+				654783022C03C01300018A55 /* DateFormatter */,
+				654783032C03D52000018A55 /* UIButton+style.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -153,6 +156,14 @@
 				654783002BFF220500018A55 /* ProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		654783022C03C01300018A55 /* DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				654782F02BFF1C9600018A55 /* DateFormatter.swift */,
+			);
+			path = DateFormatter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				654782F12BFF1C9600018A55 /* DateFormatter.swift in Sources */,
+				654783042C03D52000018A55 /* UIButton+style.swift in Sources */,
 				654782D32BFF19C100018A55 /* AppDelegate.swift in Sources */,
 				654782F92BFF20E100018A55 /* TableViewDataSource.swift in Sources */,
 				654783012BFF220500018A55 /* ProfileModel.swift in Sources */,

@@ -270,7 +270,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" red="0.1607843041" green="0.2823529541" blue="0.66274511810000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                     </backgroundConfiguration>
                                     <attributedString key="attributedTitle">
                                         <fragment content="Add pill">
@@ -293,17 +293,26 @@
                                 <rect key="frame" x="8" y="335" width="32" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="-"/>
+                                <connections>
+                                    <action selector="minusButtonDidTap:" destination="W63-1H-mrW" eventType="touchUpInside" id="gKb-nu-8gC"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Доза" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTH-mb-xUU">
-                                <rect key="frame" x="48" y="343" width="40" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTH-mb-xUU">
+                                <rect key="frame" x="48" y="343" width="65" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="k5q-5V-nk8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ZI-jB-ho2">
-                                <rect key="frame" x="96" y="335" width="35" height="35"/>
+                                <rect key="frame" x="121" y="335" width="35" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+"/>
+                                <connections>
+                                    <action selector="plusButtonDidTap:" destination="W63-1H-mrW" eventType="touchUpInside" id="xjA-3H-PPC"/>
+                                </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="irD-Rd-7Nj">
                                 <rect key="frame" x="104" y="475" width="206" height="36"/>
@@ -362,8 +371,10 @@
                         <outlet property="dosagePillTextLabel" destination="hTH-mb-xUU" id="M0W-ur-ohU"/>
                         <outlet property="frequencyPillSegmentControl" destination="DFk-NL-QVN" id="9st-9S-s6p"/>
                         <outlet property="intakeDurationPillDatePicker" destination="irD-Rd-7Nj" id="sEU-cF-2ZJ"/>
+                        <outlet property="minusButton" destination="VsP-0C-CYg" id="AlG-7U-ueO"/>
                         <outlet property="namePillTextField" destination="Vub-GU-8qN" id="U3f-Rj-rcm"/>
                         <outlet property="pillUIImageView" destination="Io7-gd-ssp" id="yRd-SE-jga"/>
+                        <outlet property="plusButton" destination="1ZI-jB-ho2" id="9a5-tU-DVV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbg-jJ-7yn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -414,6 +425,9 @@
         <image name="pillGeneral" width="215" height="204"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
