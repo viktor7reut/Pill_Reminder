@@ -12,4 +12,11 @@ extension GeneralVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = pillsToTake[indexPath.row]
+        let vc = PillsDetailFactory.create(pill: item)
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
