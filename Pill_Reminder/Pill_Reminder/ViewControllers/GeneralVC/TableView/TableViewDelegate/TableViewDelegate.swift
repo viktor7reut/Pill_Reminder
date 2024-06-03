@@ -10,11 +10,19 @@ import UIKit
 
 extension GeneralVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 110
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = pillsToTake[indexPath.row]
+        let item = pillsToTakeAll[indexPath.row]
         let vc = PillsDetailFactory.create(pill: item)
         
         self.navigationController?.pushViewController(vc, animated: true)

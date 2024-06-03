@@ -13,10 +13,19 @@ class GeneralVC: UIViewController {
     
     let addPillButton = UIButton(type: .system)
     
-    var pillsToTake: [PillModel] = [
+    var pillsToTakeAll: [PillModel] = [
         PillModel(namePill: "NBL", descriptionPill: "Pill", imagePill: "pill", dosagePill: 750, frequencyPill: 1, intakeDuration: 25, isCompleted: false),
         PillModel(namePill: "Pantap", descriptionPill: "Pill", imagePill: "pill", dosagePill: 40, frequencyPill: 1, intakeDuration: 50, isCompleted: false),
         PillModel(namePill: "Etodin", descriptionPill: "Pill", imagePill: "pill", dosagePill: 400, frequencyPill: 2, intakeDuration: 60, isCompleted: false),
+        PillModel(namePill: "Duxet", descriptionPill: "Pill", imagePill: "pill", dosagePill: 30, frequencyPill: 3, intakeDuration: 30, isCompleted: false),
+        PillModel(namePill: "Melbek", descriptionPill: "Pill", imagePill: "pill", dosagePill: 15, frequencyPill: 3, intakeDuration: 7, isCompleted: false)
+    ]
+    
+    var pillsToTakeTwoAndThreeDay: [PillModel] = [
+        PillModel(namePill: "Etodin", descriptionPill: "Pill", imagePill: "pill", dosagePill: 400, frequencyPill: 2, intakeDuration: 60, isCompleted: false)
+    ]
+    
+    var pillsToTakeThreeDay: [PillModel] = [
         PillModel(namePill: "Duxet", descriptionPill: "Pill", imagePill: "pill", dosagePill: 30, frequencyPill: 3, intakeDuration: 30, isCompleted: false),
         PillModel(namePill: "Melbek", descriptionPill: "Pill", imagePill: "pill", dosagePill: 15, frequencyPill: 3, intakeDuration: 7, isCompleted: false)
     ]
