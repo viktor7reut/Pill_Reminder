@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				654782F22BFF1E7C00018A55 /* GeneralVC */,
-				654782EB2BFF1B2F00018A55 /* AddMedicationsVC.swift */,
+				65F3E7C52C35D6A200C152A2 /* AddMedicationsVC */,
 				654782E72BFF19F900018A55 /* StartVC.swift */,
 			);
 			path = ViewControllers;
@@ -195,6 +195,14 @@
 				658AB5922C07A7D800ADCE53 /* PillsDetailFactory.swift */,
 			);
 			path = PillsDetail;
+			sourceTree = "<group>";
+		};
+		65F3E7C52C35D6A200C152A2 /* AddMedicationsVC */ = {
+			isa = PBXGroup;
+			children = (
+				654782EB2BFF1B2F00018A55 /* AddMedicationsVC.swift */,
+			);
+			path = AddMedicationsVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

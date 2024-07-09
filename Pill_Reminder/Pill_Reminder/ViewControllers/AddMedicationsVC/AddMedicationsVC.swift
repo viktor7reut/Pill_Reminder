@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AddPillVCDelegate: AnyObject {
+    func addPillToList(model: PillModel)
+}
+
 class AddMedicationsVC: UIViewController {
     @IBOutlet weak var pillUIImageView: UIImageView!
     @IBOutlet weak var namePillTextField: UITextField!
@@ -31,10 +35,24 @@ class AddMedicationsVC: UIViewController {
         }
     }
     
+    weak var addPillDelegate: AddPillVCDelegate?
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupTextField()
+        setupAddPillButton()
         minusButton.setupStyleButton()
         plusButton.setupStyleButton()
+        setupTapGesture()
+    }
+    
+    func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func minusButtonDidTap(_ sender: Any) {
@@ -82,13 +100,52 @@ class AddMedicationsVC: UIViewController {
     }
 }
 
-
 extension AddMedicationsVC: UITextFieldDelegate {
     func setupTextField() {
-        
         namePillTextField.delegate = self
-        
     }
 }
 
-// повторить textField
+extension AddMedicationsVC {
+    func setupAddPillButton() {
+        addPillButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped() {
+        if let namePill = namePillTextField.text, !namePill.isEmpty {
+            let descriptionPill = descriptionPillTextField.text ?? "no description"
+            let pillDosage = Double(dosagePillTextLabel.text!) ?? 0
+            let pillFrequency = frequencyPillSegmentControl.selectedSegmentIndex
+            let pillIntakeDuration = pillIntakeDuration(datePicker: intakeDurationPillDatePicker)
+            let model = PillModel(
+                namePill: namePill,
+                descriptionPill: descriptionPill,
+                imagePill: "pill",
+                dosagePill: pillDosage,
+                frequencyPill: pillFrequency,
+                intakeDuration: pillIntakeDuration,
+                isCompleted: false
+            )
+
+            addPillDelegate?.addPillToList(model: model)
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    }
+    
+    func pillIntakeDuration(datePicker: UIDatePicker) -> Int {
+        let currentDate = Date()
+        let selectedDate = datePicker.date
+        let calendar = Calendar.current
+
+        let date1 = calendar.startOfDay(for: currentDate)
+        let date2 = calendar.startOfDay(for: selectedDate)
+
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        if let days = components.day {
+            return days
+        }
+
+        return 0
+    }
+

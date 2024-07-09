@@ -12,13 +12,10 @@ extension GeneralVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-//            return pillsToTake.filter({ $0.frequencyPill == 1 }).count
-            return pillsToTakeAll.count
+            return pillsToTakeOneDay.count + pillsToTakeTwoDay.count + pillsToTakeThreeDay.count
         case 1:
-//            return pillsToTake.filter({ $0.frequencyPill == 2 }).count
-            return pillsToTakeTwoAndThreeDay.count
+            return pillsToTakeTwoDay.count + pillsToTakeThreeDay.count
         case 2:
-//            return pillsToTake.filter({ $0.frequencyPill == 3 }).count
             return pillsToTakeThreeDay.count
         default:
             return 0
@@ -35,19 +32,17 @@ extension GeneralVC: UITableViewDataSource {
         
         var pillCell: PillModel
         
-        //проблема с фильтрацией, преппарат который применяется 2 и 3 раза в день нету в 2 и третей секции
-        
         switch indexPath.section {
         case 0:
-            pillCell = pillsToTakeAll[indexPath.row]
+            let allPillsForSection = pillsToTakeOneDay + pillsToTakeTwoDay + pillsToTakeThreeDay
+            pillCell = allPillsForSection[indexPath.row]
         case 1:
-//            pillCell = pillsToTake.filter { $0.frequencyPill == 2 || $0.frequencyPill == 3 }[indexPath.row]
-            pillCell = pillsToTakeTwoAndThreeDay[indexPath.row]
+            let allPillsForSection = pillsToTakeTwoDay + pillsToTakeThreeDay
+            pillCell = allPillsForSection[indexPath.row]
         case 2:
-//            pillCell = pillsToTake.filter { $0.frequencyPill == 3 }[indexPath.row]
             pillCell = pillsToTakeThreeDay[indexPath.row]
         default:
-            pillCell = PillModel(namePill: "", descriptionPill: "", imagePill: "", dosagePill: 0, frequencyPill: 0, intakeDuration: 0, isCompleted: false)
+            fatalError("Неожиданная секция")
         }
         
         cell.layer.borderColor = UIColor.black.cgColor

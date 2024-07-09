@@ -22,7 +22,7 @@ extension GeneralVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = pillsToTakeAll[indexPath.row]
+        let item = pillsToTakeOneDay[indexPath.row]
         let vc = PillsDetailFactory.create(pill: item)
         
         self.navigationController?.pushViewController(vc, animated: true)
