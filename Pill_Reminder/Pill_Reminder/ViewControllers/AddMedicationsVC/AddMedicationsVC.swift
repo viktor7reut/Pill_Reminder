@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddPillVCDelegate: AnyObject {
-    func addPillToList(model: PillModel)
+    func addPillToList(model: [PillModel])
 }
 
 class AddMedicationsVC: UIViewController {
@@ -117,17 +117,31 @@ extension AddMedicationsVC {
             let pillDosage = Double(dosagePillTextLabel.text!) ?? 0
             let pillFrequency = frequencyPillSegmentControl.selectedSegmentIndex
             let pillIntakeDuration = pillIntakeDuration(datePicker: intakeDurationPillDatePicker)
-            let model = PillModel(
-                namePill: namePill,
-                descriptionPill: descriptionPill,
-                imagePill: "pill",
-                dosagePill: pillDosage,
-                frequencyPill: pillFrequency,
-                intakeDuration: pillIntakeDuration,
-                isCompleted: false
-            )
+            
+            var frequencies: [PillModel.Frequency] = []
+            
+            switch pillFrequency {
+            case 0:
+                frequencies = [.morning]
+            case 1:
+                frequencies = [.morning, .evening]
+            default:
+                frequencies = [.morning, .afternoon, .evening]
+            }
+            
+            let models = frequencies.map({
+                PillModel(
+                    namePill: namePill,
+                    descriptionPill: descriptionPill,
+                    imagePill: "pill",
+                    dosagePill: pillDosage,
+                    frequencyPill: $0,
+                    intakeDuration: pillIntakeDuration,
+                    isCompleted: false
+                )
+            })
 
-            addPillDelegate?.addPillToList(model: model)
+            addPillDelegate?.addPillToList(model: models)
             navigationController?.popViewController(animated: true)
         }
     }

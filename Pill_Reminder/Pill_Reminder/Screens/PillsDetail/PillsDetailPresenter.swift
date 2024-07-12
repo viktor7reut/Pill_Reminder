@@ -21,6 +21,6 @@ final class PillsDetailPresenter {
     }
     
     func getDescription() -> String {
-        return "Нужно пропить \(model.item.intakeDuration)"
+        return "Нужно пропить \(model.item.intakeDuration) дней"
     }
 }

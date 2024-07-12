@@ -13,23 +13,7 @@ class GeneralVC: UIViewController {
     
     let addPillButton = UIButton(type: .system)
     
-    var pillsToTakeOneDay: [PillModel] = [
-        PillModel(namePill: "NBL", descriptionPill: "Pill", imagePill: "pill", dosagePill: 750, frequencyPill: 1, intakeDuration: 25, isCompleted: false),
-        PillModel(namePill: "Pantap", descriptionPill: "Pill", imagePill: "pill", dosagePill: 40, frequencyPill: 1, intakeDuration: 50, isCompleted: false)
-    ]
-    
-    var pillsToTakeTwoDay: [PillModel] = [
-        PillModel(namePill: "Etodin", descriptionPill: "Pill", imagePill: "pill", dosagePill: 400, frequencyPill: 2, intakeDuration: 60, isCompleted: false)
-    ]
-    
-    var pillsToTakeThreeDay: [PillModel] = [
-        PillModel(namePill: "Duxet", descriptionPill: "Pill", imagePill: "pill", dosagePill: 30, frequencyPill: 3, intakeDuration: 30, isCompleted: false),
-        PillModel(namePill: "Melbek", descriptionPill: "Pill", imagePill: "pill", dosagePill: 15, frequencyPill: 3, intakeDuration: 7, isCompleted: false)
-    ]
-    
-    var pillsDontNeedToTake: [PillModel] = [
-    
-    ]
+    var pills: [PillModel] = []
     
     override func viewDidLoad() {
         setupDate()
@@ -65,19 +49,8 @@ extension GeneralVC {
 }
 
 extension GeneralVC: AddPillVCDelegate {
-    func addPillToList(model: PillModel) {
-        switch model.frequencyPill {
-        case 0:
-            pillsToTakeOneDay.append(model)
-        case 1:
-            pillsToTakeTwoDay.append(model)
-        case 2:
-            pillsToTakeThreeDay.append(model)
-        default:
-            print("Некорректная частота приема")
-        }
-        DispatchQueue.main.async {
-            self.generalTableView.reloadData()
-        }
+    func addPillToList(model: [PillModel]) {
+        pills.append(contentsOf: model)
+        self.generalTableView.reloadData()
     }
 }

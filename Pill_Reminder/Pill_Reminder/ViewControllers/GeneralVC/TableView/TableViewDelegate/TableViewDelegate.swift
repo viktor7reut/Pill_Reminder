@@ -22,8 +22,11 @@ extension GeneralVC: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = pillsToTakeOneDay[indexPath.row]
-        let vc = PillsDetailFactory.create(pill: item)
+        let sectionPills = pills.filter({ $0.frequencyPill.rawValue == indexPath.section })
+        guard sectionPills.count > indexPath.row else { return }
+        var pillCell = sectionPills[indexPath.row]
+        
+        let vc = PillsDetailFactory.create(pill: pillCell)
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -12,7 +12,13 @@ struct PillModel {
     var descriptionPill: String
     var imagePill: String
     var dosagePill: Double
-    var frequencyPill: Int
+    var frequencyPill: Frequency
     var intakeDuration: Int
     var isCompleted: Bool = false
+    
+    enum Frequency: Int {
+        case morning = 0
+        case afternoon = 1
+        case evening = 2
+    }
 }

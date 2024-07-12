@@ -90,7 +90,7 @@ private extension PillsDetailView {
     func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .blue
+        view.addSubview(UIImageView(image: UIImage(named: "pill")))
         return view
     }
     
