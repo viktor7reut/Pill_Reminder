@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Realm
 
 struct PillModel {
     var namePill: String
@@ -15,10 +16,30 @@ struct PillModel {
     var frequencyPill: Frequency
     var intakeDuration: Int
     var isCompleted: Bool = false
-    
+
     enum Frequency: Int {
         case morning = 0
         case afternoon = 1
         case evening = 2
+    }
+    
+    init(namePill: String, descriptionPill: String, imagePill: String, dosagePill: Double, frequencyPill: Frequency, intakeDuration: Int, isCompleted: Bool = false) {
+            self.namePill = namePill
+            self.descriptionPill = descriptionPill
+            self.imagePill = imagePill
+            self.dosagePill = dosagePill
+            self.frequencyPill = frequencyPill
+            self.intakeDuration = intakeDuration
+            self.isCompleted = isCompleted
+        }
+
+    init(realmPillModel: RealmPillsModels) {
+        self.namePill = realmPillModel.namePill
+        self.descriptionPill = realmPillModel.descriptionPill
+        self.imagePill = realmPillModel.imagePill
+        self.dosagePill = realmPillModel.dosagePill
+        self.frequencyPill = Frequency(rawValue: realmPillModel.frequencyPill) ?? .morning
+        self.intakeDuration = realmPillModel.intakeDuration
+        self.isCompleted = realmPillModel.isCompleted
     }
 }
