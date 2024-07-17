@@ -8,7 +8,7 @@
 import UIKit
 import Realm
 
-struct PillModel {
+struct PillModel: Equatable {
     var namePill: String
     var descriptionPill: String
     var imagePill: String
@@ -21,6 +21,18 @@ struct PillModel {
         case morning = 0
         case afternoon = 1
         case evening = 2
+        
+        var description: String {
+            
+            switch self {
+            case .morning:
+                return "Утренний прием"
+            case .afternoon:
+                return "Обеденный прием"
+            case .evening:
+                return "Вечерний прием"
+            }
+        }
     }
     
     init(namePill: String, descriptionPill: String, imagePill: String, dosagePill: Double, frequencyPill: Frequency, intakeDuration: Int, isCompleted: Bool = false) {

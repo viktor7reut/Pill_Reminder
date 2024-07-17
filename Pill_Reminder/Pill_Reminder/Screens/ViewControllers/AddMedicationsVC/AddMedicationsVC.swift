@@ -141,12 +141,11 @@ extension AddMedicationsVC {
                 )
             }
 
-            addPillDelegate?.addPillToList(model: models)
-            
             for model in models {
                 DataManager.shared.createPill(model: model)
             }
             
+            addPillDelegate?.addPillToList(model: models)
             navigationController?.popViewController(animated: true)
         }
     }
@@ -167,4 +166,3 @@ extension AddMedicationsVC {
         return 0
     }
 }
-

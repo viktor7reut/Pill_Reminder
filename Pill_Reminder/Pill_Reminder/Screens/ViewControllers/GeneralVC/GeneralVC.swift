@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class GeneralVC: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
@@ -25,13 +26,17 @@ class GeneralVC: UIViewController {
         
         generalTableView.dataSource = self
         generalTableView.delegate = self
+        
+        generalTableView.isHidden = pills.isEmpty
+        
+        permissionToSendNotification()
+        createRequest()
     }
     
     func loadPills() {
         pills = dataManager.getAllPill()
         generalTableView.reloadData()
     }
-    
 }
 
 extension GeneralVC {
@@ -59,17 +64,10 @@ extension GeneralVC {
 }
 
 extension GeneralVC: AddPillVCDelegate {
+    
     func addPillToList(model: [PillModel]) {
-        let realm = try! Realm()
-        try! realm.write {
-            for pillModel in model {
-                let realmPillModel = RealmPillsModels(from: pillModel)
-                realm.add(realmPillModel)
-            }
-        }
-        
+        generalTableView.isHidden = false
         pills.append(contentsOf: model)
-        self.pills = self.dataManager.getAllPill() 
-        self.generalTableView.reloadData()
+        generalTableView.reloadData()
     }
 }

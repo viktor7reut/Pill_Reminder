@@ -28,6 +28,7 @@
 		658AB58F2C07A7B500ADCE53 /* PillsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AB58E2C07A7B500ADCE53 /* PillsDetailModel.swift */; };
 		658AB5912C07A7C500ADCE53 /* PillsDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AB5902C07A7C500ADCE53 /* PillsDetailCoordinator.swift */; };
 		658AB5932C07A7D800ADCE53 /* PillsDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658AB5922C07A7D800ADCE53 /* PillsDetailFactory.swift */; };
+		65980E6B2C4854FE00F23EB6 /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65980E6A2C4854FE00F23EB6 /* UserNotificationCenter.swift */; };
 		65BDC9112C4300B0003239DA /* RealmPillsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BDC9102C4300B0003239DA /* RealmPillsModels.swift */; };
 		6D68EAF08284E960354FE657 /* Pods_Pill_Reminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B64651FFA5ACBBE4F605652 /* Pods_Pill_Reminder.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		658AB58E2C07A7B500ADCE53 /* PillsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsDetailModel.swift; sourceTree = "<group>"; };
 		658AB5902C07A7C500ADCE53 /* PillsDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsDetailCoordinator.swift; sourceTree = "<group>"; };
 		658AB5922C07A7D800ADCE53 /* PillsDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsDetailFactory.swift; sourceTree = "<group>"; };
+		65980E6A2C4854FE00F23EB6 /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
 		65BDC9102C4300B0003239DA /* RealmPillsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPillsModels.swift; sourceTree = "<group>"; };
 		6B64651FFA5ACBBE4F605652 /* Pods_Pill_Reminder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pill_Reminder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74178BB02A19391E9903A000 /* Pods-Pill_Reminder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pill_Reminder.release.xcconfig"; path = "Target Support Files/Pods-Pill_Reminder/Pods-Pill_Reminder.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				658AB5882C07A74F00ADCE53 /* Screens */,
 				654782FD2BFF21DB00018A55 /* Model */,
 				65BDC90E2C42F4FB003239DA /* DataBase */,
+				65980E692C4854C800F23EB6 /* UserNotificationCenter */,
 				654782EF2BFF1C7F00018A55 /* Extensions */,
 				654782D22BFF19C100018A55 /* AppDelegate.swift */,
 				654782D42BFF19C100018A55 /* SceneDelegate.swift */,
@@ -231,6 +234,14 @@
 				654782E72BFF19F900018A55 /* StartVC.swift */,
 			);
 			path = StartVC;
+			sourceTree = "<group>";
+		};
+		65980E692C4854C800F23EB6 /* UserNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				65980E6A2C4854FE00F23EB6 /* UserNotificationCenter.swift */,
+			);
+			path = UserNotificationCenter;
 			sourceTree = "<group>";
 		};
 		65BDC90E2C42F4FB003239DA /* DataBase */ = {
@@ -400,6 +411,7 @@
 				65BDC9112C4300B0003239DA /* RealmPillsModels.swift in Sources */,
 				654782FC2BFF21AD00018A55 /* TableViewDelegate.swift in Sources */,
 				654782FF2BFF21E800018A55 /* PillModel.swift in Sources */,
+				65980E6B2C4854FE00F23EB6 /* UserNotificationCenter.swift in Sources */,
 				654782F62BFF1EB700018A55 /* GeneralTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

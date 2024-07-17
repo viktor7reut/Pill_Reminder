@@ -11,20 +11,21 @@ import UIKit
 extension GeneralVC: UITableViewDataSource {
     //Количество строк в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return pills.filter({ $0.frequencyPill == .morning }).count
-        case 1:
-            return pills.filter({ $0.frequencyPill == .afternoon }).count
-        case 2:
-            return pills.filter({ $0.frequencyPill == .evening }).count
-        default:
-            return 0
-        }
+        var setTypes: Set<PillModel.Frequency> = .init()
+        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
+        
+        let a = Array(setTypes)
+        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
+        
+        return pills.filter({ $0.frequencyPill == result[section] }).count
+      
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        var types: Set<PillModel.Frequency> = .init()
+        pills.map({ $0.frequencyPill }).forEach({ types.insert($0) })
+        
+        return types.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +34,14 @@ extension GeneralVC: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let sectionPills = pills.filter({ $0.frequencyPill.rawValue == indexPath.section })
+        var setTypes: Set<PillModel.Frequency> = .init()
+        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
+        
+        let a = Array(setTypes)
+        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
+        
+        let sectionPills = pills.filter({ $0.frequencyPill.rawValue == result[indexPath.section].rawValue })
+        
         guard sectionPills.count > indexPath.row else {
             return UITableViewCell()
         }
@@ -45,15 +53,11 @@ extension GeneralVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Утренний прием"
-        case 1:
-            return "Обеденный прием"
-        case 2:
-            return "Вечерний прием"
-        default:
-            return nil
-        }
+        var setTypes: Set<PillModel.Frequency> = .init()
+        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
+        
+        let a = Array(setTypes)
+        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
+        return result[section].description
     }
 }
