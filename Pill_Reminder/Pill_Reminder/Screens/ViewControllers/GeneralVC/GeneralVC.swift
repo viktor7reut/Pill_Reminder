@@ -42,7 +42,7 @@ class GeneralVC: UIViewController {
 extension GeneralVC {
     func setupAddPillButton() {
         guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
-
+        
         addPillButton.frame = CGRect(x: view.frame.width - 80, y: view.frame.height - tabBarHeight - 88, width: 60, height: 60)
         addPillButton.setTitle("+", for: .normal)
         addPillButton.backgroundColor = UIColor.white
@@ -50,7 +50,7 @@ extension GeneralVC {
         addPillButton.layer.cornerRadius = addPillButton.frame.width / 2
         addPillButton.layer.borderColor = UIColor.blue.cgColor
         addPillButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-
+        
         view.addSubview(addPillButton)
     }
     

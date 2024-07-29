@@ -8,11 +8,27 @@
 import Foundation
 import RealmSwift
 
+import Foundation
+import RealmSwift
+
 class DataManager {
     static let shared = DataManager()
     let realm: Realm
     
     private init() {
+        // Установка конфигурации Realm с миграцией
+        let config = Realm.Configuration(
+            schemaVersion: 2, // Обновление версии
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 2) {
+                    migration.enumerateObjects(ofType: RealmPillsModels.className()) { oldObject, newObject in
+                        // Для выполнения любых необходимых преобразований данных
+                    }
+                }
+            }
+        )
+        
+        Realm.Configuration.defaultConfiguration = config
         realm = try! Realm()
     }
     

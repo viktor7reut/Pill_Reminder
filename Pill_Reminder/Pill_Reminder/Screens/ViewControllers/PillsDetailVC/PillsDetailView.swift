@@ -28,7 +28,6 @@ class PillsDetailView: UIViewController {
         super.viewDidLoad()
         setupUI()
         setup()
-        
     }
     
 }
@@ -37,8 +36,8 @@ private extension PillsDetailView {
     
     func setup() {
         pillLabel.text = presenter.getTitle()
-        progressLabel.text = presenter.getDescription() // посмотреть прогресс
-        
+        progressLabel.text = presenter.getDescription()
+        pillProgressLine.progress = presenter.getProgress()
     }
     
     func setupUI() {
@@ -117,10 +116,12 @@ private extension PillsDetailView {
         let view = UIProgressView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.progressTintColor = .blue
-        view.progress = 0.5
+        
+        // Устанавливаем прогресс
+        DispatchQueue.main.async {
+            view.progress = self.presenter.getProgress()
+        }
         
         return view
     }
-    
-    
 }

@@ -114,9 +114,10 @@ extension AddMedicationsVC {
     @objc func buttonTapped() {
         if let namePill = namePillTextField.text, !namePill.isEmpty {
             let descriptionPill = descriptionPillTextField.text ?? "no description"
-            let pillDosage = Double(dosagePillTextLabel.text!) ?? 0
+            let pillDosage = Double(dosagePillTextLabel.text ?? "0") ?? 0
             let pillFrequency = frequencyPillSegmentControl.selectedSegmentIndex
             let pillIntakeDuration = pillIntakeDuration(datePicker: intakeDurationPillDatePicker)
+            let startDate = Date()
             
             var frequencies: [PillModel.Frequency] = []
             
@@ -137,10 +138,11 @@ extension AddMedicationsVC {
                     dosagePill: pillDosage,
                     frequencyPill: frequency,
                     intakeDuration: pillIntakeDuration,
+                    startDate: startDate,
                     isCompleted: false
                 )
             }
-
+            
             for model in models {
                 DataManager.shared.createPill(model: model)
             }

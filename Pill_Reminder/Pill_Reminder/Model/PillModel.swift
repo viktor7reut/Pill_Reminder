@@ -7,6 +7,7 @@
 
 import UIKit
 import Realm
+import Foundation
 
 struct PillModel: Equatable {
     var namePill: String
@@ -15,15 +16,15 @@ struct PillModel: Equatable {
     var dosagePill: Double
     var frequencyPill: Frequency
     var intakeDuration: Int
+    let startDate: Date
     var isCompleted: Bool = false
-
+    
     enum Frequency: Int {
         case morning = 0
         case afternoon = 1
         case evening = 2
         
         var description: String {
-            
             switch self {
             case .morning:
                 return "Утренний прием"
@@ -35,16 +36,19 @@ struct PillModel: Equatable {
         }
     }
     
-    init(namePill: String, descriptionPill: String, imagePill: String, dosagePill: Double, frequencyPill: Frequency, intakeDuration: Int, isCompleted: Bool = false) {
-            self.namePill = namePill
-            self.descriptionPill = descriptionPill
-            self.imagePill = imagePill
-            self.dosagePill = dosagePill
-            self.frequencyPill = frequencyPill
-            self.intakeDuration = intakeDuration
-            self.isCompleted = isCompleted
-        }
-
+    init(namePill: String, descriptionPill: String, imagePill: String, dosagePill: Double, frequencyPill: Frequency, intakeDuration: Int, startDate: Date, isCompleted: Bool = false) {
+        
+        self.namePill = namePill
+        self.descriptionPill = descriptionPill
+        self.imagePill = imagePill
+        self.dosagePill = dosagePill
+        self.frequencyPill = frequencyPill
+        self.intakeDuration = intakeDuration
+        self.startDate = startDate
+        self.isCompleted = isCompleted
+        
+    }
+    
     init(realmPillModel: RealmPillsModels) {
         self.namePill = realmPillModel.namePill
         self.descriptionPill = realmPillModel.descriptionPill
@@ -52,6 +56,7 @@ struct PillModel: Equatable {
         self.dosagePill = realmPillModel.dosagePill
         self.frequencyPill = Frequency(rawValue: realmPillModel.frequencyPill) ?? .morning
         self.intakeDuration = realmPillModel.intakeDuration
+        self.startDate = realmPillModel.startDate
         self.isCompleted = realmPillModel.isCompleted
     }
 }

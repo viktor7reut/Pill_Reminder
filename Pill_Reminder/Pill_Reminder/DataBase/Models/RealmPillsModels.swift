@@ -16,8 +16,9 @@ class RealmPillsModels: Object {
     @Persisted var dosagePill: Double = 0
     @Persisted var frequencyPill: Int = 0
     @Persisted var intakeDuration: Int = 0
+    @Persisted var startDate: Date = Date()
     @Persisted var isCompleted: Bool = false
-
+    
     convenience init(from pillModel: PillModel) {
         self.init()
         self.namePill = pillModel.namePill
@@ -26,6 +27,7 @@ class RealmPillsModels: Object {
         self.dosagePill = pillModel.dosagePill
         self.frequencyPill = pillModel.frequencyPill.rawValue
         self.intakeDuration = pillModel.intakeDuration
+        self.startDate = pillModel.startDate
         self.isCompleted = pillModel.isCompleted
     }
 }

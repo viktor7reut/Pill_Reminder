@@ -42,7 +42,7 @@ extension GeneralVC: UITableViewDelegate {
     //удаление по свайпу влево
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-           
+            
             // Получаем элемент для удаления
             var setTypes: Set<PillModel.Frequency> = .init()
             self.pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
@@ -57,19 +57,19 @@ extension GeneralVC: UITableViewDelegate {
             }
             
             let pillToDelete = sectionPills[indexPath.row]
-
+            
             // Удаляем элемент из базы данных Realm
             if let realmPillToDelete = self.dataManager.realm.objects(RealmPillsModels.self)
                 .filter("namePill == %@", pillToDelete.namePill)
                 .filter("frequencyPill == %@", pillToDelete.frequencyPill.rawValue).first {
                 self.dataManager.deletePill(model: realmPillToDelete)
             }
-
+            
             // Удаляем элемент из массива pills
             if let index = self.pills.firstIndex(where: { $0 == pillToDelete }) {
                 self.pills.remove(at: index)
             }
-
+            
             // Обновляем таблицу
             self.generalTableView.beginUpdates()
             DispatchQueue.main.async {
@@ -81,15 +81,15 @@ extension GeneralVC: UITableViewDelegate {
                 
                 self.generalTableView.endUpdates()
             }
-
+            
             
             if self.pills.isEmpty {
                 self.generalTableView.isHidden = true
             }
-
+            
             completionHandler(true)
         }
-
+        
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration
     }

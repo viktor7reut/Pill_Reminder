@@ -18,7 +18,7 @@ extension GeneralVC: UITableViewDataSource {
         let result = a.sorted(by: { $0.rawValue < $1.rawValue })
         
         return pills.filter({ $0.frequencyPill == result[section] }).count
-      
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,7 +33,7 @@ extension GeneralVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(GeneralTableViewCell.self)", for: indexPath) as? GeneralTableViewCell else {
             return UITableViewCell()
         }
-
+        
         var setTypes: Set<PillModel.Frequency> = .init()
         pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
         
@@ -45,7 +45,7 @@ extension GeneralVC: UITableViewDataSource {
         guard sectionPills.count > indexPath.row else {
             return UITableViewCell()
         }
-
+        
         let pillCell = sectionPills[indexPath.row]
         cell.updateCell(pill: pillCell)
         
