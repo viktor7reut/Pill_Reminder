@@ -11,21 +11,11 @@ import UIKit
 extension GeneralVC: UITableViewDataSource {
     //Количество строк в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var setTypes: Set<PillModel.Frequency> = .init()
-        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
-        
-        let a = Array(setTypes)
-        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
-        
-        return pills.filter({ $0.frequencyPill == result[section] }).count
-        
+        return pillsData[section].value.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        var types: Set<PillModel.Frequency> = .init()
-        pills.map({ $0.frequencyPill }).forEach({ types.insert($0) })
-        
-        return types.count
+        return pillsData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,30 +24,31 @@ extension GeneralVC: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        var setTypes: Set<PillModel.Frequency> = .init()
-        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
+        let pillModel = pillsData[indexPath.section].value[indexPath.row]
         
-        let a = Array(setTypes)
-        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
+        cell.delegate = self
+        cell.index = indexPath
         
-        let sectionPills = pills.filter({ $0.frequencyPill.rawValue == result[indexPath.section].rawValue })
-        
-        guard sectionPills.count > indexPath.row else {
-            return UITableViewCell()
-        }
-        
-        let pillCell = sectionPills[indexPath.row]
-        cell.updateCell(pill: pillCell)
+        cell.updateCell(pill: pillModel)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var setTypes: Set<PillModel.Frequency> = .init()
-        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
         
-        let a = Array(setTypes)
-        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
-        return result[section].description
+        return pillsData[section].key.description
+    }
+}
+
+extension GeneralVC: GeneralTableViewCellDelegate {
+    
+    func updatePill(for index: IndexPath?) {
+        guard let indexPath = index else { return }
+        
+        pillsData[indexPath.section].value[indexPath.row].isCompleted.toggle()
+        
+        let model = self.pillsData[indexPath.section].value[indexPath.row]
+        dataManager.updatePill(model: model)
+        generalTableView.reloadData()
     }
 }

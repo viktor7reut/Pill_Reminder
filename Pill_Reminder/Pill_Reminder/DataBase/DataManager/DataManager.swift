@@ -8,9 +8,6 @@
 import Foundation
 import RealmSwift
 
-import Foundation
-import RealmSwift
-
 class DataManager {
     static let shared = DataManager()
     let realm: Realm
@@ -44,9 +41,23 @@ class DataManager {
         return realmPills.map { PillModel(realmPillModel: $0) }
     }
     
-    func deletePill(model: RealmPillsModels) {
+    func deletePill(model: PillModel) {
+        guard let realmPillModel = realm.objects(RealmPillsModels.self)
+            .filter("namePill == %@", model.namePill)
+            .filter("frequencyPill == %@", model.frequencyPill.rawValue).first else { return }
+        
         try! realm.write {
-            realm.delete(model)
+            realm.delete(realmPillModel)
+        }
+    }
+    
+    func updatePill(model: PillModel) {
+        
+        guard let realmPillModel = realm.objects(RealmPillsModels.self)
+            .filter("namePill == %@", model.namePill)
+            .filter("frequencyPill == %@", model.frequencyPill.rawValue).first else { return }
+        try! realm.write {
+            realmPillModel.isCompleted.toggle()
         }
     }
 }

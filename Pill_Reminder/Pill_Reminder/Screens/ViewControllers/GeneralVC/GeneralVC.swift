@@ -15,8 +15,7 @@ class GeneralVC: UIViewController {
     
     let addPillButton = UIButton(type: .system)
     let dataManager = DataManager.shared
-    
-    var pills: [PillModel] = []
+    var pillsData: [(key: PillModel.Frequency, value: [PillModel])] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +26,26 @@ class GeneralVC: UIViewController {
         generalTableView.dataSource = self
         generalTableView.delegate = self
         
-        generalTableView.isHidden = pills.isEmpty
+        generalTableView.isHidden = pillsData.isEmpty
         
         permissionToSendNotification()
         createRequest()
     }
     
     func loadPills() {
-        pills = dataManager.getAllPill()
+        pillsData = []
+        let pills = dataManager.getAllPill()
+        
+        var setTypes: Set<PillModel.Frequency> = .init()
+        pills.map({ $0.frequencyPill }).forEach({ setTypes.insert($0) })
+        
+        let a = Array(setTypes)
+        let result = a.sorted(by: { $0.rawValue < $1.rawValue })
+        
+        result.enumerated().forEach { index, frequency in
+            pillsData.append((key: frequency, value: pills.filter({ $0.frequencyPill == result[index] })))
+        }
+        
         generalTableView.reloadData()
     }
 }
@@ -66,8 +77,6 @@ extension GeneralVC {
 extension GeneralVC: AddPillVCDelegate {
     
     func addPillToList(model: [PillModel]) {
-        generalTableView.isHidden = false
-        pills.append(contentsOf: model)
-        generalTableView.reloadData()
+        loadPills()
     }
 }
